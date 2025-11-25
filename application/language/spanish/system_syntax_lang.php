@@ -981,9 +981,9 @@ $lang['back_to_lab_module'] = 'Volver al módulo de laboratorio';
 
 $lang['recommended_size'] = 'Tamaño recomendado';
 
-$lang['email_settings_instruction_1'] = 'Debe ser el correo electrónico de su servidor. Supongamos que usted aloja el script en codearistos.net.';
+$lang['email_settings_instruction_1'] = 'Debe ser el correo electrónico de su servidor. Supongamos que usted aloja el script en Smartworks.net.';
 
-$lang['email_settings_instruction_2'] = 'Entonces, el correo electrónico de su administrador debe ser something@codearistos.net para enviar el correo electrónico correctamente';
+$lang['email_settings_instruction_2'] = 'Entonces, el correo electrónico de su administrador debe ser something@Smartworks.net para enviar el correo electrónico correctamente';
 
 $lang['active'] = 'Activo'; 
 

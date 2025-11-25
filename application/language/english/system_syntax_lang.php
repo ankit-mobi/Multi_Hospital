@@ -1015,9 +1015,9 @@ $lang['back_to_lab_module'] = 'Back To Lab Module';
 
 $lang['recommended_size'] = 'Recommended Size';
 
-$lang['email_settings_instruction_1'] = 'It must be the email from your server. Suppose you host the script in codearistos.net.';
+$lang['email_settings_instruction_1'] = 'It must be the email from your server. Suppose you host the script in Smartworks.net.';
 
-$lang['email_settings_instruction_2'] = 'Then your admin email must be something@codearistos.net for sending the email properly'; 
+$lang['email_settings_instruction_2'] = 'Then your admin email must be something@Smartworks.net for sending the email properly'; 
 
 $lang['active'] = 'Active'; 
 

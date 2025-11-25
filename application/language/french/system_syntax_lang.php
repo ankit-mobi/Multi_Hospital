@@ -966,9 +966,9 @@ $lang['back_to_lab_module'] = 'Retour au module de laboratoire';
 
 $lang['recommended_size'] = 'Taille recommandée';
 
-$lang['email_settings_instruction_1'] = 'Ce doit être l email de votre serveur. Supposons que vous hébergiez le script sur codearistos.net.';
+$lang['email_settings_instruction_1'] = 'Ce doit être l email de votre serveur. Supposons que vous hébergiez le script sur Smartworks.net.';
 
-$lang['email_settings_instruction_2'] = 'Ensuite, votre email d administrateur doit être quelque chose@codearistos.net pour pouvoir l envoyer correctement';
+$lang['email_settings_instruction_2'] = 'Ensuite, votre email d administrateur doit être quelque something@Smartworks.net pour pouvoir l envoyer correctement';
 
 $lang['active'] = 'actif'; 
 

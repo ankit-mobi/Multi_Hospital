@@ -1015,9 +1015,9 @@ $lang['back_to_lab_module'] = 'Modul Kembali Ke Lab';
 
 $lang['recommended_size'] = 'Ukuran yang disarankan';
 
-$lang['email_settings_instruction_1'] = 'Itu harus email dari server Anda. Misalkan Anda meng-host skrip di codearistos.net.';
+$lang['email_settings_instruction_1'] = 'Itu harus email dari server Anda. Misalkan Anda meng-host skrip di Smartworks.net.';
 
-$lang['email_settings_instruction_2'] = 'Maka email admin Anda harus berupa example@codearistos.net untuk mengirim email dengan benar'; 
+$lang['email_settings_instruction_2'] = 'Maka email admin Anda harus berupa something@Smartworks.net untuk mengirim email dengan benar'; 
 
 $lang['active'] = 'Aktif'; 
 
