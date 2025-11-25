@@ -520,8 +520,11 @@ class CI_Profiler {
 		$output = '<fieldset id="ci_profiler_csession" style="border:1px solid #000;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee;">'
 			.'<legend style="color:#000;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_session_data').'&nbsp;&nbsp;(<span style="cursor: pointer;" onclick="var s=document.getElementById(\'ci_profiler_session_data\').style;s.display=s.display==\'none\'?\'\':\'none\';this.innerHTML=this.innerHTML==\''.$this->CI->lang->line('profiler_section_show').'\'?\''.$this->CI->lang->line('profiler_section_hide').'\':\''.$this->CI->lang->line('profiler_section_show').'\';">'.$this->CI->lang->line('profiler_section_show').'</span>)</legend>'
 			.'<table style="width:100%;display:none;" id="ci_profiler_session_data">';
-
-		foreach ($this->CI->session->userdata() as $key => $val)
+		
+		$all_userdata = $this->CI->session->userdata(); // Get data first
+		
+         if (is_array($all_userdata) && !empty($all_userdata)){ // Check if it exists
+		foreach ($all_userdata as $key => $val)
 		{
 			$pre       = '';
 			$pre_close = '';
@@ -537,6 +540,7 @@ class CI_Profiler {
 			$output .= '<tr><td style="padding:5px;vertical-align:top;color:#900;background-color:#ddd;">'
 				.$key.'&nbsp;&nbsp;</td><td style="padding:5px;color:#000;background-color:#ddd;">'.$pre.htmlspecialchars((string) $val, ENT_QUOTES, config_item('charset')).$pre_close."</td></tr>\n";
 		}
+	}
 
 		return $output."</table>\n</fieldset>";
 	}
