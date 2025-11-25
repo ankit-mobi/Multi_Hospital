@@ -164,7 +164,7 @@ class Modules
 
         // autoload Modular Extensions MX core classes
         if (strstr($class, 'MX_')) {
-            if (is_file($location = dirname(__FILE__).'/'.substr($class, 3).EXT)) {
+            if (is_file($location = dirname(__FILE__).'/'.substr($class, 3).'.php')) {
                 include_once $location;
                 return;
             }
@@ -172,13 +172,13 @@ class Modules
         }
 
         // autoload core classes
-        if (is_file($location = APPPATH.'core/'.ucfirst($class).EXT)) {
+        if (is_file($location = APPPATH.'core/'.ucfirst($class).'.php')) {
             include_once $location;
             return;
         }
 
         // autoload library classes
-        if (is_file($location = APPPATH.'libraries/'.ucfirst($class).EXT)) {
+        if (is_file($location = APPPATH.'libraries/'.ucfirst($class).'.php')) {
             include_once $location;
             return;
         }
@@ -199,7 +199,7 @@ class Modules
     public static function load_file($file, $path, $type = 'other', $result = true)
     {
         $file = str_replace(EXT, '', $file);
-        $location = $path.$file.EXT;
+        $location = $path.$file.'.php';
 
         if ($type === 'other') {
             if (class_exists($file, false)) {
@@ -240,7 +240,7 @@ class Modules
         $segments = explode('/', $file);
 
         $file = array_pop($segments);
-        $file_ext = pathinfo($file, PATHINFO_EXTENSION) ? $file : $file.EXT;
+        $file_ext = pathinfo($file, PATHINFO_EXTENSION) ? $file : $file.'.php';
 
         $path = ltrim(implode('/', $segments).'/', '/');
         $module ? $modules[$module] = $path : $modules = [];

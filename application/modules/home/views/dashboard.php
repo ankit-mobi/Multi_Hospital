@@ -32,7 +32,9 @@ if (!$this->ion_auth->in_group(array('superadmin'))) {
         <meta name="author" content="Rizvi">
         <meta name="keyword" content="Php, Hospital, Clinic, Management, Software, Php, CodeIgniter, Hms, Accounting">
         <link rel="shortcut icon" href="uploads/favicon.png">
-        <title> <?php echo $this->router->fetch_class(); ?> | 
+        <!-- <title> <?php echo $this->router->fetch_class(); ?> | -->
+        <title><?php echo $this->router->class; ?> | 
+ 
             <?php
             if ($this->ion_auth->in_group(array('superadmin'))) {
                 $this->db->where('hospital_id', 'superadmin');

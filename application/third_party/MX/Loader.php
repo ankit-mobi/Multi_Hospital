@@ -130,7 +130,7 @@ class MX_Loader extends CI_Loader
             return false;
         }
 
-        require_once BASEPATH.'database/DB'.EXT;
+        require_once BASEPATH.'database/DB.php';
 
         if ($return === true) {
             return DB($params, $query_builder);
@@ -447,7 +447,7 @@ class MX_Loader extends CI_Loader
             [$path, $_plugin] = Modules::find($plugin.'_pi', $this->_module, 'plugins/');
         }
 
-        if ($path === false && ! is_file($_plugin = APPPATH.'plugins/'.$_plugin.EXT)) {
+        if ($path === false && ! is_file($_plugin = APPPATH.'plugins/'.$_plugin.'.php')) {
             show_error("Unable to locate the plugin file: {$_plugin}");
         }
 
@@ -552,7 +552,7 @@ class MX_Loader extends CI_Loader
             $_ci_path = '';
 
             // add file extension if not provided
-            $_ci_file = pathinfo($_ci_view, PATHINFO_EXTENSION) ? $_ci_view : $_ci_view.EXT;
+            $_ci_file = pathinfo($_ci_view, PATHINFO_EXTENSION) ? $_ci_view : $_ci_view.'.php';
 
             foreach ($this->_ci_view_paths as $path => $cascade) {
                 if (file_exists($view = $path.$_ci_file)) {
@@ -626,7 +626,7 @@ class MX_Loader extends CI_Loader
             }
             // module constants file
             if ($path !== false) {
-                include_once $path.$file.EXT;
+                include_once $path.$file.'.php';
             }
 
             // Backward function

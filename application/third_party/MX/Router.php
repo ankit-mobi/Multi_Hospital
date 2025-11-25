@@ -137,7 +137,7 @@ class MX_Router extends CI_Router
         // with Modules::run('module/controller/method')
         $this->directory = null;
         $this->located = 0;
-        $ext = $this->config->item('controller_suffix').EXT;
+        $ext = $this->config->item('controller_suffix').'.php';
 
         /* use module route if available */
         if (isset($segments[0]) && $routes = Modules::parse_routes($segments[0], implode('/', $segments))) {

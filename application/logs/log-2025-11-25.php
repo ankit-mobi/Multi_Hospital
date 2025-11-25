@@ -723,3 +723,15 @@ ERROR - 2025-11-25 09:41:30 --> Could not find the language line "form_validatio
 ERROR - 2025-11-25 09:41:30 --> 404 Page Not Found: /index
 ERROR - 2025-11-25 09:41:42 --> Severity: Warning --> session_regenerate_id(): Cannot regenerate session id - session is not active D:\xampp\htdocs\Multi-Hospital\system\libraries\Session\Session.php 767
 ERROR - 2025-11-25 10:12:29 --> 404 Page Not Found: /index
+ERROR - 2025-11-25 10:23:51 --> 404 Page Not Found: /index
+ERROR - 2025-11-25 10:26:41 --> 404 Page Not Found: /index
+ERROR - 2025-11-25 10:26:43 --> 404 Page Not Found: /index
+ERROR - 2025-11-25 10:26:45 --> 404 Page Not Found: /index
+ERROR - 2025-11-25 10:26:47 --> 404 Page Not Found: /index
+ERROR - 2025-11-25 11:46:56 --> 404 Page Not Found: /index
+ERROR - 2025-11-25 11:46:56 --> Severity: Notice --> Undefined offset: 1 D:\xampp\htdocs\Multi-Hospital\application\modules\appointment\controllers\Appointment.php 673
+ERROR - 2025-11-25 11:46:56 --> Severity: Notice --> Undefined offset: 1 D:\xampp\htdocs\Multi-Hospital\application\modules\appointment\controllers\Appointment.php 675
+ERROR - 2025-11-25 11:46:56 --> Severity: Notice --> Undefined offset: 1 D:\xampp\htdocs\Multi-Hospital\application\modules\appointment\controllers\Appointment.php 680
+ERROR - 2025-11-25 11:46:56 --> Severity: Notice --> Undefined offset: 1 D:\xampp\htdocs\Multi-Hospital\application\modules\appointment\controllers\Appointment.php 683
+ERROR - 2025-11-25 11:46:56 --> Severity: Warning --> A non-numeric value encountered D:\xampp\htdocs\Multi-Hospital\application\modules\appointment\controllers\Appointment.php 688
+ERROR - 2025-11-25 11:46:56 --> Severity: Notice --> Undefined offset: 1 D:\xampp\htdocs\Multi-Hospital\application\modules\appointment\controllers\Appointment.php 688
