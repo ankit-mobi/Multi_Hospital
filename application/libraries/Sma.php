@@ -101,7 +101,7 @@ class Sma {
             }
         }
 
-        if ($this->email->send()) {
+        if ($this->email->send(FALSE)) {
             //echo $this->email->print_debugger(); die();
             return TRUE;
         } else {

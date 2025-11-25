@@ -153,7 +153,7 @@ class Email extends MX_Controller {
             $this->email->message($message);
 
 
-            if ($this->email->send()) {
+            if ($this->email->send(FALSE)) {
                 $data = array();
                 $date = time();
                 $data = array(
