@@ -111,25 +111,25 @@ class Patient extends MX_Controller {
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         // Validating Name Field
-        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[2]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[2]|max_length[100]');
         // Validating Password Field
         if (empty($id)) {
-            $this->form_validation->set_rules('password', 'Password', 'trim|min_length[3]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('password', 'Password', 'trim|min_length[3]|max_length[100]');
         }
         // Validating Email Field
-        $this->form_validation->set_rules('email', 'Email', 'trim|min_length[2]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('email', 'Email', 'trim|min_length[2]|max_length[100]');
         // Validating Doctor Field
-        //   $this->form_validation->set_rules('doctor', 'Doctor', 'trim|min_length[1]|max_length[100]|xss_clean');
+        //   $this->form_validation->set_rules('doctor', 'Doctor', 'trim|min_length[1]|max_length[100]');
         // Validating Address Field   
-        $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[2]|max_length[500]|xss_clean');
+        $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[2]|max_length[500]');
         // Validating Phone Field           
-        $this->form_validation->set_rules('phone', 'Phone', 'trim|required|min_length[2]|max_length[50]|xss_clean');
+        $this->form_validation->set_rules('phone', 'Phone', 'trim|required|min_length[2]|max_length[50]');
         // Validating Email Field
-        $this->form_validation->set_rules('sex', 'Sex', 'trim|min_length[2]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('sex', 'Sex', 'trim|min_length[2]|max_length[100]');
         // Validating Address Field   
-        $this->form_validation->set_rules('birthdate', 'Birth Date', 'trim|min_length[2]|max_length[500]|xss_clean');
+        $this->form_validation->set_rules('birthdate', 'Birth Date', 'trim|min_length[2]|max_length[500]');
         // Validating Phone Field           
-        $this->form_validation->set_rules('bloodgroup', 'Blood Group', 'trim|min_length[1]|max_length[10]|xss_clean');
+        $this->form_validation->set_rules('bloodgroup', 'Blood Group', 'trim|min_length[1]|max_length[10]');
 
 
         if ($this->form_validation->run() == FALSE) {
@@ -320,10 +320,10 @@ class Patient extends MX_Controller {
 
 
         // Validating Name Field
-        $this->form_validation->set_rules('invoice', 'Invoice', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('invoice', 'Invoice', 'trim|required|min_length[1]|max_length[100]');
         // Validating Password Field
 
-        $this->form_validation->set_rules('report', 'Report', 'trim|min_length[1]|max_length[10000]|xss_clean');
+        $this->form_validation->set_rules('report', 'Report', 'trim|min_length[1]|max_length[10000]');
 
 
         if ($this->form_validation->run() == FALSE) {
@@ -496,9 +496,9 @@ class Patient extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 // Validating Patient Name Field
-        $this->form_validation->set_rules('patient', 'Patient', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('patient', 'Patient', 'trim|min_length[1]|max_length[100]');
 // Validating Deposited Amount Field
-        $this->form_validation->set_rules('deposited_amount', 'Deposited Amount', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('deposited_amount', 'Deposited Amount', 'trim|min_length[1]|max_length[100]');
         if ($this->form_validation->run() == FALSE) {
             redirect('patient/myPaymentsHistory');
         } else {
@@ -603,14 +603,14 @@ class Patient extends MX_Controller {
         }
 
         // Validating Name Field
-        $this->form_validation->set_rules('date', 'Date', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('date', 'Date', 'trim|min_length[1]|max_length[100]');
 
         // Validating Title Field
-        $this->form_validation->set_rules('title', 'Title', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('title', 'Title', 'trim|min_length[1]|max_length[100]');
 
         // Validating Password Field
 
-        $this->form_validation->set_rules('description', 'Description', 'trim|min_length[5]|max_length[10000]|xss_clean');
+        $this->form_validation->set_rules('description', 'Description', 'trim|min_length[5]|max_length[10000]');
 
 
         if ($this->form_validation->run() == FALSE) {
@@ -917,7 +917,7 @@ class Patient extends MX_Controller {
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         // Validating Patient Field
-        $this->form_validation->set_rules('patient', 'Patient', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('patient', 'Patient', 'trim|required|min_length[1]|max_length[100]');
 
 
         if ($this->form_validation->run() == FALSE) {

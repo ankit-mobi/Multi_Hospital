@@ -169,9 +169,9 @@ class Pharmacy extends MX_Controller {
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         // Validating Price Field
-        $this->form_validation->set_rules('patient', 'Patient', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('patient', 'Patient', 'trim|min_length[1]|max_length[100]');
         // Validating Price Field
-        $this->form_validation->set_rules('discount', 'Discount', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('discount', 'Discount', 'trim|min_length[1]|max_length[100]');
 
         if ($this->form_validation->run() == FALSE) {
             echo 'form validate noe nai re';
@@ -313,9 +313,9 @@ class Pharmacy extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         // Validating Category Field
-        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]');
         // Validating Generic Name Field
-        $this->form_validation->set_rules('amount', 'Amount', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('amount', 'Amount', 'trim|required|min_length[1]|max_length[100]');
         // Validating Company Name Field
         if ($this->form_validation->run() == FALSE) {
             $data = array();
@@ -393,10 +393,10 @@ class Pharmacy extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         // Validating Category Name Field
-        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]');
         // Validating Description Field
         $data['settings'] = $this->settings_model->getSettings();
-        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[100]');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('home/dashboard', $data); // just the header file
             $this->load->view('pharmacy/add_expense_category');

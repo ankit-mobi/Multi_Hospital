@@ -39,17 +39,17 @@ class Laboratorist extends MX_Controller {
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         // Validating Name Field
-        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[5]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[5]|max_length[100]');
         // Validating Password Field
         if (empty($id)) {
-            $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[5]|max_length[100]');
         }
         // Validating Email Field
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[5]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[5]|max_length[100]');
         // Validating Address Field   
-        $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[5]|max_length[500]|xss_clean');
+        $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[5]|max_length[500]');
         // Validating Phone Field           
-        $this->form_validation->set_rules('phone', 'Phone', 'trim|required|min_length[5]|max_length[50]|xss_clean');
+        $this->form_validation->set_rules('phone', 'Phone', 'trim|required|min_length[5]|max_length[50]');
         if ($this->form_validation->run() == FALSE) {
             if (!empty($id)) {
                 $data = array();

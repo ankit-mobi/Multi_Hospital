@@ -53,19 +53,19 @@ class pgateway extends MX_Controller {
 
         if ($pgateway->name == 'Pay U Money') {
             // Validating Name Field
-            $this->form_validation->set_rules('merchant_key', 'Merchant Key', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('merchant_key', 'Merchant Key', 'trim|required|min_length[1]|max_length[100]');
             // Validating Email Field
-            $this->form_validation->set_rules('salt', 'Salt Id', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('salt', 'Salt Id', 'trim|required|min_length[1]|max_length[100]');
         }
 
 
         if ($pgateway->name == 'PayPal') {
             // Validating Name Field
-            $this->form_validation->set_rules('APIUsername', 'API Username', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('APIUsername', 'API Username', 'trim|required|min_length[1]|max_length[100]');
             // Validating Email Field
-            $this->form_validation->set_rules('APIPassword', 'API Password', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('APIPassword', 'API Password', 'trim|required|min_length[1]|max_length[100]');
             // Validating Email Field
-            $this->form_validation->set_rules('APISignature', 'APISignature Signature', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('APISignature', 'APISignature Signature', 'trim|required|min_length[1]|max_length[100]');
         }
 
         if ($this->form_validation->run() == FALSE) {

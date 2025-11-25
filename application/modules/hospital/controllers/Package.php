@@ -65,17 +65,17 @@ class Package extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         // Validating Name Field
-        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[1]|max_length[100]');
         // Validating Patient Limit Field
-        $this->form_validation->set_rules('p_limit', 'Patient Limit', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('p_limit', 'Patient Limit', 'trim|required|min_length[1]|max_length[100]');
         // Validating Doctoor Limit Field
-        $this->form_validation->set_rules('d_limit', 'Dooctor Limit', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('d_limit', 'Dooctor Limit', 'trim|required|min_length[1]|max_length[100]');
         // Validating Price Field
-        $this->form_validation->set_rules('price', 'Price', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('price', 'Price', 'trim|required|min_length[1]|max_length[100]');
         // Validating Show In Frontend Field
-        $this->form_validation->set_rules('show_in_frontend', 'Show In Frontend', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('show_in_frontend', 'Show In Frontend', 'trim|min_length[1]|max_length[100]');
         // Validating Doctoor Limit Field
-        $this->form_validation->set_rules('set_as_default', 'Set As Default', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('set_as_default', 'Set As Default', 'trim|min_length[1]|max_length[100]');
 
 
 

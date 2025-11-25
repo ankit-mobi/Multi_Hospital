@@ -122,17 +122,17 @@ class Prescription extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         // Validating Date Field
-        $this->form_validation->set_rules('date', 'Date', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('date', 'Date', 'trim|required|min_length[1]|max_length[100]');
         // Validating Patient Field
-        $this->form_validation->set_rules('patient', 'Patient', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('patient', 'Patient', 'trim|required|min_length[1]|max_length[100]');
         // Validating Doctor Field
-        $this->form_validation->set_rules('doctor', 'Doctor', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('doctor', 'Doctor', 'trim|min_length[1]|max_length[100]');
         // Validating Advice Field
-        $this->form_validation->set_rules('symptom', 'History', 'trim|min_length[1]|max_length[1000]|xss_clean');
+        $this->form_validation->set_rules('symptom', 'History', 'trim|min_length[1]|max_length[1000]');
         // Validating Do And Dont Name Field
-        $this->form_validation->set_rules('note', 'Note', 'trim|min_length[1]|max_length[1000]|xss_clean');
+        $this->form_validation->set_rules('note', 'Note', 'trim|min_length[1]|max_length[1000]');
         // Validating Validity Field
-        $this->form_validation->set_rules('validity', 'Validity', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('validity', 'Validity', 'trim|min_length[1]|max_length[100]');
 
 
 
@@ -264,9 +264,9 @@ class Prescription extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         // Validating Category Name Field
-        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]');
         // Validating Description Field
-        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[100]');
         if ($this->form_validation->run() == FALSE) {
             $data['settings'] = $this->settings_model->getSettings();
             $this->load->view('home/dashboard', $data); // just the header file

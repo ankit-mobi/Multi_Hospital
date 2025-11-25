@@ -61,19 +61,19 @@ class Request extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         // Validating Name Field
-        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[1]|max_length[100]');
         // Validating Address Field
-        $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[1]|max_length[100]');
         // Validating Email Field
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[1]|max_length[100]');
         // Validating Phone Field           
-        $this->form_validation->set_rules('phone', 'Phone', 'trim|required|min_length[1]|max_length[50]|xss_clean');
+        $this->form_validation->set_rules('phone', 'Phone', 'trim|required|min_length[1]|max_length[50]');
         // Validating Status Field           
-        $this->form_validation->set_rules('status', 'Status', 'trim|min_length[1]|max_length[50]|xss_clean');
+        $this->form_validation->set_rules('status', 'Status', 'trim|min_length[1]|max_length[50]');
 
 
         // Validating Language Field           
-        $this->form_validation->set_rules('language', 'Language', 'trim|required|min_length[1]|max_length[50]|xss_clean');
+        $this->form_validation->set_rules('language', 'Language', 'trim|required|min_length[1]|max_length[50]');
 
         if ($this->form_validation->run() == FALSE) {
             if (!empty($id)) {

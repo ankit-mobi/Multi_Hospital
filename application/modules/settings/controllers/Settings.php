@@ -53,23 +53,23 @@ class Settings extends MX_Controller {
             $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
             // Validating Name Field
-            $this->form_validation->set_rules('name', 'System Name', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('name', 'System Name', 'trim|required|min_length[1]|max_length[100]');
             // Validating Title Field
-            $this->form_validation->set_rules('title', 'Title', 'rtrim|equired|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('title', 'Title', 'rtrim|equired|min_length[1]|max_length[100]');
             // Validating Email Field
-            $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[1]|max_length[100]');
             // Validating Address Field   
-            $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[1]|max_length[500]|xss_clean');
+            $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[1]|max_length[500]');
             // Validating Phone Field           
-            $this->form_validation->set_rules('phone', 'Phone', 'trim|required|min_length[1]|max_length[50]|xss_clean');
+            $this->form_validation->set_rules('phone', 'Phone', 'trim|required|min_length[1]|max_length[50]');
             // Validating Currency Field   
-            $this->form_validation->set_rules('currency', 'Currency', 'trim|required|min_length[1]|max_length[3]|xss_clean');
+            $this->form_validation->set_rules('currency', 'Currency', 'trim|required|min_length[1]|max_length[3]');
             // Validating Currency Field   
-            $this->form_validation->set_rules('logo', 'Logo', 'trim|min_length[1]|max_length[1000]|xss_clean');
+            $this->form_validation->set_rules('logo', 'Logo', 'trim|min_length[1]|max_length[1000]');
             // Validating Department Field   
-            $this->form_validation->set_rules('buyer', 'Buyer', 'trim|min_length[5]|max_length[500]|xss_clean');
+            $this->form_validation->set_rules('buyer', 'Buyer', 'trim|min_length[5]|max_length[500]');
             // Validating Phone Field           
-            $this->form_validation->set_rules('p_code', 'Purchase Code', 'trim|min_length[5]|max_length[50]|xss_clean');
+            $this->form_validation->set_rules('p_code', 'Purchase Code', 'trim|min_length[5]|max_length[50]');
 
             if ($this->form_validation->run() == FALSE) {
                 $data = array();
@@ -179,7 +179,7 @@ class Settings extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         // Validating Name Field
-        $this->form_validation->set_rules('language', 'language', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('language', 'language', 'trim|required|min_length[1]|max_length[100]');
 
 
         if ($this->form_validation->run() == FALSE) {
@@ -216,7 +216,7 @@ class Settings extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         // Validating Name Field
-        $this->form_validation->set_rules('payment_gateway', 'Payment Gateway', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('payment_gateway', 'Payment Gateway', 'trim|required|min_length[1]|max_length[100]');
 
 
         if ($this->form_validation->run() == FALSE) {
@@ -249,7 +249,7 @@ class Settings extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         // Validating Name Field
-        $this->form_validation->set_rules('sms_gateway', 'Sms Gateway', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('sms_gateway', 'Sms Gateway', 'trim|required|min_length[1]|max_length[100]');
 
 
         if ($this->form_validation->run() == FALSE) {

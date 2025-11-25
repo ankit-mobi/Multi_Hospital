@@ -428,14 +428,14 @@ class Schedule extends MX_Controller {
 
 
 // Validating Starting Time Field
-        $this->form_validation->set_rules('s_time', 'Start Time', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('s_time', 'Start Time', 'trim|required|min_length[1]|max_length[100]');
 // Validating End Time Field   
-        $this->form_validation->set_rules('e_time', 'End Time', 'trim|required|min_length[1]|max_length[500]|xss_clean');
+        $this->form_validation->set_rules('e_time', 'End Time', 'trim|required|min_length[1]|max_length[500]');
 // Validating Week Day Field   
-        $this->form_validation->set_rules('e_time', 'End Time', 'trim|required|min_length[1]|max_length[500]|xss_clean');
+        $this->form_validation->set_rules('e_time', 'End Time', 'trim|required|min_length[1]|max_length[500]');
 
         // Validating Duration Field   
-        $this->form_validation->set_rules('duration', 'Duration', 'trim|required|min_length[1]|max_length[500]|xss_clean');
+        $this->form_validation->set_rules('duration', 'Duration', 'trim|required|min_length[1]|max_length[500]');
 
         if ($this->form_validation->run() == FALSE) {
             if (!empty($id)) {
@@ -937,11 +937,11 @@ class Schedule extends MX_Controller {
 
 
 // Validating Starting Time Field
-        $this->form_validation->set_rules('s_time', 'Start Time', 'trim|required|min_length[5]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('s_time', 'Start Time', 'trim|required|min_length[5]|max_length[100]');
 // Validating End Time Field   
-        $this->form_validation->set_rules('e_time', 'End Time', 'trim|required|min_length[5]|max_length[500]|xss_clean');
+        $this->form_validation->set_rules('e_time', 'End Time', 'trim|required|min_length[5]|max_length[500]');
 // Validating Week Day Field   
-        $this->form_validation->set_rules('e_time', 'End Time', 'trim|required|min_length[5]|max_length[500]|xss_clean');
+        $this->form_validation->set_rules('e_time', 'End Time', 'trim|required|min_length[5]|max_length[500]');
 
         if ($this->form_validation->run() == FALSE) {
             if (!empty($id)) {
@@ -1063,7 +1063,7 @@ class Schedule extends MX_Controller {
             }
         }
 // Validating Email Field
-        $this->form_validation->set_rules('date', 'Date', 'trim|required|min_length[5]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('date', 'Date', 'trim|required|min_length[5]|max_length[100]');
 
 
 

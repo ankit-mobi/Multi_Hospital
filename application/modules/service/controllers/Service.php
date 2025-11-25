@@ -37,9 +37,9 @@ class Service extends MX_Controller {
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         // Validating Name Field
-        $this->form_validation->set_rules('title', 'Title', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('title', 'Title', 'trim|required|min_length[1]|max_length[100]');
         // Validating Email Field
-        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[1000]|xss_clean');
+        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[1000]');
 
         if ($this->form_validation->run() == FALSE) {
             if (!empty($id)) {

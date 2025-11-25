@@ -177,9 +177,9 @@ class Lab extends MX_Controller {
 // Validating Category Field
 // $this->form_validation->set_rules('category_amount[]', 'Category', 'min_length[1]|max_length[100]');
 // Validating Price Field
-        $this->form_validation->set_rules('patient', 'Patient', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('patient', 'Patient', 'trim|min_length[1]|max_length[100]');
 // Validating Price Field
-        $this->form_validation->set_rules('discount', 'Discount', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('discount', 'Discount', 'trim|min_length[1]|max_length[100]');
 
         if ($this->form_validation->run() == FALSE) {
             redirect('lab/addLabView');
@@ -379,9 +379,9 @@ class Lab extends MX_Controller {
 
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-        $this->form_validation->set_rules('report', 'Report', 'trim|min_length[1]|max_length[10000]|xss_clean');
+        $this->form_validation->set_rules('report', 'Report', 'trim|min_length[1]|max_length[10000]');
 // Validating Price Field
-        $this->form_validation->set_rules('user', 'User', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('user', 'User', 'trim|min_length[1]|max_length[100]');
 
         if ($this->form_validation->run() == FALSE) {
             redirect('lab/addTemplate');
@@ -456,13 +456,13 @@ class Lab extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 // Validating Category Name Field
-        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]');
 // Validating Description Field
-        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[100]');
         // Validating Description Field
-        $this->form_validation->set_rules('reference_value', 'Reference Value', 'trim|required|min_length[1]|max_length[1000]|xss_clean');
+        $this->form_validation->set_rules('reference_value', 'Reference Value', 'trim|required|min_length[1]|max_length[1000]');
 // Validating Description Field
-        $this->form_validation->set_rules('type', 'Type', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('type', 'Type', 'trim|min_length[1]|max_length[100]');
 
         if ($this->form_validation->run() == FALSE) {
             if (!empty($id)) {

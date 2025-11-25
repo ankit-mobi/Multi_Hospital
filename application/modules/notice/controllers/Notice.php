@@ -46,11 +46,11 @@ class Notice extends MX_Controller {
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         // Validating Title Field
-        $this->form_validation->set_rules('title', 'Title', 'trim|required|min_length[5]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('title', 'Title', 'trim|required|min_length[5]|max_length[100]');
         // Validating Description Field
-        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[5]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[5]|max_length[100]');
         // Validating date Field
-        $this->form_validation->set_rules('date', 'date', 'trim|required|min_length[5]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('date', 'date', 'trim|required|min_length[5]|max_length[100]');
 
 
         if ($this->form_validation->run() == FALSE) {

@@ -146,9 +146,9 @@ class Finance extends MX_Controller {
 // Validating Category Field
 // $this->form_validation->set_rules('category_amount[]', 'Category', 'min_length[1]|max_length[100]');
 // Validating Price Field
-        $this->form_validation->set_rules('patient', 'Patient', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('patient', 'Patient', 'trim|min_length[1]|max_length[100]');
 // Validating Price Field
-        $this->form_validation->set_rules('discount', 'Discount', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('discount', 'Discount', 'trim|min_length[1]|max_length[100]');
 
         if ($this->form_validation->run() == FALSE) {
             redirect('finance/addPaymentView');
@@ -514,35 +514,35 @@ class Finance extends MX_Controller {
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
 // Validating Patient Field
-        $this->form_validation->set_rules('patient', 'Patient', 'trim|required|min_length[2]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('patient', 'Patient', 'trim|required|min_length[2]|max_length[100]');
 // Validating Consultant surgeon Field
-        $this->form_validation->set_rules('doctor_c_s', 'Consultant surgeon', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('doctor_c_s', 'Consultant surgeon', 'trim|min_length[1]|max_length[100]');
 // Validating Assistant Surgeon Field
-        $this->form_validation->set_rules('doctor_a_s_1', 'Assistant Surgeon (1)', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('doctor_a_s_1', 'Assistant Surgeon (1)', 'trim|min_length[1]|max_length[100]');
 // Validating Assistant Surgeon Field
-        $this->form_validation->set_rules('doctor_a_s_2', 'Assistant Surgeon(2)', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('doctor_a_s_2', 'Assistant Surgeon(2)', 'trim|min_length[1]|max_length[100]');
 // Validating Anaesthisist Field
-        $this->form_validation->set_rules('doctor_anaes', 'Anaesthisist', 'trim|min_length[2]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('doctor_anaes', 'Anaesthisist', 'trim|min_length[2]|max_length[100]');
 // Validating Nature Of Operation Field
-        $this->form_validation->set_rules('n_o_o', 'Nature Of Operation', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('n_o_o', 'Nature Of Operation', 'trim|min_length[1]|max_length[100]');
 // Validating Consultant Surgeon Fee Field
-        $this->form_validation->set_rules('c_s_f', 'Consultant Surgeon Fee', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('c_s_f', 'Consultant Surgeon Fee', 'trim|min_length[1]|max_length[100]');
 // Validating Assistant surgeon fee Field
-        $this->form_validation->set_rules('a_s_f_1', 'Assistant surgeon fee', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('a_s_f_1', 'Assistant surgeon fee', 'trim|min_length[1]|max_length[100]');
 // Validating Assistant surgeon fee Field
-        $this->form_validation->set_rules('a_s_f_2', 'Assistant surgeon fee', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('a_s_f_2', 'Assistant surgeon fee', 'trim|min_length[1]|max_length[100]');
 // Validating Anaesthesist Field
-        $this->form_validation->set_rules('anaes_f', 'Anaesthesist', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('anaes_f', 'Anaesthesist', 'trim|min_length[1]|max_length[100]');
 // Validating OT Charge Field
-        $this->form_validation->set_rules('ot_charge', 'OT Charge', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('ot_charge', 'OT Charge', 'trim|min_length[1]|max_length[100]');
 // Validating Cabin Rent Field
-        $this->form_validation->set_rules('cab_rent', 'Cabin Rent', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('cab_rent', 'Cabin Rent', 'trim|min_length[1]|max_length[100]');
 // Validating Seat Rent Field
-        $this->form_validation->set_rules('seat_rent', 'Seat Rent', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('seat_rent', 'Seat Rent', 'trim|min_length[1]|max_length[100]');
 // Validating Others Field
-        $this->form_validation->set_rules('others', 'Others', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('others', 'Others', 'trim|min_length[1]|max_length[100]');
 // Validating Discount Field
-        $this->form_validation->set_rules('discount', 'Discount', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('discount', 'Discount', 'trim|min_length[1]|max_length[100]');
 
         if ($this->form_validation->run() == FALSE) {
             echo 'form validate noe nai re';
@@ -760,15 +760,15 @@ class Finance extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 // Validating Category Name Field
-        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]');
 // Validating Description Field
-        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[100]');
 // Validating Description Field
-        $this->form_validation->set_rules('c_price', 'Category price', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('c_price', 'Category price', 'trim|min_length[1]|max_length[100]');
 // Validating Doctor Commission Rate Field
-        $this->form_validation->set_rules('d_commission', 'Doctor Commission rate', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('d_commission', 'Doctor Commission rate', 'trim|min_length[1]|max_length[100]');
 // Validating Description Field
-        $this->form_validation->set_rules('type', 'Type', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('type', 'Type', 'trim|min_length[1]|max_length[100]');
 
         if ($this->form_validation->run() == FALSE) {
             if (!empty($id)) {
@@ -849,11 +849,11 @@ class Finance extends MX_Controller {
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
 // Validating Category Field
-        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]');
 // Validating Generic Name Field
-        $this->form_validation->set_rules('amount', 'Amount', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('amount', 'Amount', 'trim|required|min_length[1]|max_length[100]');
 // Validating Note Field
-        $this->form_validation->set_rules('note', 'Note', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('note', 'Note', 'trim|min_length[1]|max_length[100]');
 
 
         if ($this->form_validation->run() == FALSE) {
@@ -939,9 +939,9 @@ class Finance extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 // Validating Category Name Field
-        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]');
 // Validating Description Field
-        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[100]');
         if ($this->form_validation->run() == FALSE) {
             if (!empty($id)) {
                 $this->session->set_flashdata('feedback', 'Validation Error !');
@@ -1093,9 +1093,9 @@ class Finance extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 // Validating Patient Name Field
-        $this->form_validation->set_rules('patient', 'Patient', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('patient', 'Patient', 'trim|min_length[1]|max_length[100]');
 // Validating Deposited Amount Field
-        $this->form_validation->set_rules('deposited_amount', 'Deposited Amount', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('deposited_amount', 'Deposited Amount', 'trim|min_length[1]|max_length[100]');
         if ($this->form_validation->run() == FALSE) {
             redirect('finance/patientPaymentHistory?patient=' . $patient);
         } else {

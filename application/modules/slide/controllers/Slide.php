@@ -40,17 +40,17 @@ class Slide extends MX_Controller {
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
         // Validating Name Field
-        $this->form_validation->set_rules('title', 'Title', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('title', 'Title', 'trim|required|min_length[1]|max_length[100]');
         // Validating Text 1 Field
-        $this->form_validation->set_rules('text1', 'Text 1', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('text1', 'Text 1', 'trim|required|min_length[1]|max_length[100]');
         // Validating Text 2 Field
-        $this->form_validation->set_rules('text2', 'Text 2', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('text2', 'Text 2', 'trim|required|min_length[1]|max_length[100]');
         // Validating Text 3 Field
-        $this->form_validation->set_rules('text3', 'Text 3', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('text3', 'Text 3', 'trim|required|min_length[1]|max_length[100]');
         // Validating Position Field   
-        $this->form_validation->set_rules('position', 'Position', 'trim|required|min_length[1]|max_length[500]|xss_clean');
+        $this->form_validation->set_rules('position', 'Position', 'trim|required|min_length[1]|max_length[500]');
         // Validating Status Field           
-        $this->form_validation->set_rules('status', 'Status', 'trim|required|min_length[1]|max_length[50]|xss_clean');
+        $this->form_validation->set_rules('status', 'Status', 'trim|required|min_length[1]|max_length[50]');
 
         if ($this->form_validation->run() == FALSE) {
             if (!empty($id)) {

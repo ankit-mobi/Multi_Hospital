@@ -40,11 +40,11 @@ class Bed extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         // Validating Category Field
-        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]');
         // Validating Price Field
-        $this->form_validation->set_rules('number', 'Bed Number', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('number', 'Bed Number', 'trim|required|min_length[1]|max_length[100]');
         // Validating Generic Name Field
-        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[100]');
         // Validating Company Name Field
 
         if ($this->form_validation->run() == FALSE) {
@@ -129,9 +129,9 @@ class Bed extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         // Validating Category Name Field
-        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('category', 'Category', 'trim|required|min_length[1]|max_length[100]');
         // Validating Description Field
-        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[1]|max_length[100]');
         if ($this->form_validation->run() == FALSE) {
             if (!empty($id)) {
                 $data = array();
@@ -217,15 +217,15 @@ class Bed extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         // Validating Category Field
-        $this->form_validation->set_rules('bed_id', 'Bed', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('bed_id', 'Bed', 'trim|required|min_length[1]|max_length[100]');
         // Validating Patient Field
-        $this->form_validation->set_rules('patient', 'Patient', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('patient', 'Patient', 'trim|required|min_length[1]|max_length[100]');
         // Validating Alloted Time Field
-        $this->form_validation->set_rules('a_time', 'Alloted Time', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('a_time', 'Alloted Time', 'trim|required|min_length[1]|max_length[100]');
         // Validating Discharge Time Field
-        $this->form_validation->set_rules('d_time', 'Discharge Time', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('d_time', 'Discharge Time', 'trim|min_length[1]|max_length[100]');
         // Validating Status Field
-        $this->form_validation->set_rules('status', 'Status', 'trim|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('status', 'Status', 'trim|min_length[1]|max_length[100]');
         if ($this->form_validation->run() == FALSE) {
             $data = array();
             $data['beds'] = $this->bed_model->getBed();

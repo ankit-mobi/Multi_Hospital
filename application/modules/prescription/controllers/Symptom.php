@@ -54,9 +54,9 @@ class Symptom extends MX_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
         // Validating Name Field
-        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[2]|max_length[10000]|xss_clean');
+        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[2]|max_length[10000]');
         // Validating Category Field
-        $this->form_validation->set_rules('patient', 'Patient', 'trim|required|min_length[2]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('patient', 'Patient', 'trim|required|min_length[2]|max_length[100]');
 
 
 

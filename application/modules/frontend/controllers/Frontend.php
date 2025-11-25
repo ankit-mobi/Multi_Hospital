@@ -97,23 +97,23 @@ class Frontend extends MX_Controller {
 
 
         if ($patient == 'add_new') {
-            $this->form_validation->set_rules('p_name', 'Patient Name', 'trim|required|min_length[1]|max_length[100]|xss_clean');
-            $this->form_validation->set_rules('p_phone', 'Patient Phone', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('p_name', 'Patient Name', 'trim|required|min_length[1]|max_length[100]');
+            $this->form_validation->set_rules('p_phone', 'Patient Phone', 'trim|required|min_length[1]|max_length[100]');
         }
 
         if ($patient == 'patient_id') {
-            $this->form_validation->set_rules('patient_id', 'Patient Name', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('patient_id', 'Patient Name', 'trim|required|min_length[1]|max_length[100]');
         }
 
 
         // Validating Name Field
-        $this->form_validation->set_rules('patient', 'Patient', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('patient', 'Patient', 'trim|required|min_length[1]|max_length[100]');
         // Validating Doctor Field
-        $this->form_validation->set_rules('doctor', 'Doctor', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('doctor', 'Doctor', 'trim|required|min_length[1]|max_length[100]');
         // Validating Date Field
-        $this->form_validation->set_rules('date', 'Date', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('date', 'Date', 'trim|required|min_length[1]|max_length[100]');
         // Validating Address Field   
-        $this->form_validation->set_rules('remarks', 'Remarks', 'trim|min_length[1]|max_length[1000]|xss_clean');
+        $this->form_validation->set_rules('remarks', 'Remarks', 'trim|min_length[1]|max_length[1000]');
 
         if ($this->form_validation->run() == FALSE) {
 
@@ -549,42 +549,42 @@ class Frontend extends MX_Controller {
             $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
             // Validating Title Field
-            $this->form_validation->set_rules('title', 'Title', 'rtrim|equired|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('title', 'Title', 'rtrim|equired|min_length[1]|max_length[100]');
             // Validating Email Field
-            $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[1]|max_length[100]');
             // Validating Address Field   
-            $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[1]|max_length[1000]|xss_clean');
+            $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[1]|max_length[1000]');
             // Validating Phone Field           
-            $this->form_validation->set_rules('phone', 'Phone', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('phone', 'Phone', 'trim|required|min_length[1]|max_length[100]');
             // Validating Currency Field   
-            $this->form_validation->set_rules('currency', 'Currency', 'trim|required|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('currency', 'Currency', 'trim|required|min_length[1]|max_length[100]');
             // Validating Currency Field   
-            $this->form_validation->set_rules('logo', 'Logo', 'trim|min_length[1]|max_length[1000]|xss_clean');
+            $this->form_validation->set_rules('logo', 'Logo', 'trim|min_length[1]|max_length[1000]');
 
             // Validating Currency Field   
-            $this->form_validation->set_rules('emergency', 'Emergency', 'trim|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('emergency', 'Emergency', 'trim|min_length[1]|max_length[100]');
             // Validating Currency Field   
-            $this->form_validation->set_rules('support', 'Support', 'trim|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('support', 'Support', 'trim|min_length[1]|max_length[100]');
             // Validating Currency Field   
-            $this->form_validation->set_rules('logo', 'Logo', 'trim|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('logo', 'Logo', 'trim|min_length[1]|max_length[100]');
             // Validating Currency Field   
-            $this->form_validation->set_rules('block_1_text_under_title', 'Block 1 Text Under Title', 'trim|min_length[1]|max_length[500]|xss_clean');
+            $this->form_validation->set_rules('block_1_text_under_title', 'Block 1 Text Under Title', 'trim|min_length[1]|max_length[500]');
             // Validating Currency Field   
-            $this->form_validation->set_rules('service_block__text_under_title', 'Service Block Text Under Title', 'trim|min_length[1]|max_length[500]|xss_clean');
+            $this->form_validation->set_rules('service_block__text_under_title', 'Service Block Text Under Title', 'trim|min_length[1]|max_length[500]');
             // Validating Currency Field   
-            $this->form_validation->set_rules('doctor_block__text_under_title', 'Doctor Block Text Under Title', 'trim|min_length[1]|max_length[500]|xss_clean');
+            $this->form_validation->set_rules('doctor_block__text_under_title', 'Doctor Block Text Under Title', 'trim|min_length[1]|max_length[500]');
             // Validating Currency Field   
-            $this->form_validation->set_rules('facebook_id', 'Facebook Id', 'trim|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('facebook_id', 'Facebook Id', 'trim|min_length[1]|max_length[100]');
             // Validating Currency Field   
-            $this->form_validation->set_rules('twitter_id', 'Teitter Id', 'trim|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('twitter_id', 'Teitter Id', 'trim|min_length[1]|max_length[100]');
             // Validating Currency Field   
-            $this->form_validation->set_rules('twitter_username', 'Teitter Username', 'trim|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('twitter_username', 'Teitter Username', 'trim|min_length[1]|max_length[100]');
             // Validating Currency Field   
-            $this->form_validation->set_rules('google_id', 'Google Id', 'trim|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('google_id', 'Google Id', 'trim|min_length[1]|max_length[100]');
             // Validating Currency Field   
-            $this->form_validation->set_rules('youtube_id', 'Youtube Id', 'trim|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('youtube_id', 'Youtube Id', 'trim|min_length[1]|max_length[100]');
             // Validating Currency Field   
-            $this->form_validation->set_rules('skype_id', 'Skype Id', 'trim|min_length[1]|max_length[100]|xss_clean');
+            $this->form_validation->set_rules('skype_id', 'Skype Id', 'trim|min_length[1]|max_length[100]');
 
 
             if ($this->form_validation->run() == FALSE) {
