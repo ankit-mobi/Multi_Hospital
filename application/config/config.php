@@ -254,14 +254,18 @@ $config['encryption_key'] = 'codearistos';
 | 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
 |
 */
-$config['sess_driver'] = 'database';      // since your project stores sessions in DB
-$config['sess_cookie_name'] = 'ci_session';
-$config['sess_expiration'] = 7200;        // or what you prefer
-$config['sess_save_path'] = 'ci_sessions'; // MUST be your database table name
-$config['sess_match_ip'] = FALSE;
-$config['sess_time_to_update'] = 300;
+/*
+|--------------------------------------------------------------------------
+| Session Variables (Updated for CodeIgniter 3)
+|--------------------------------------------------------------------------
+*/
+$config['sess_driver']             = 'database';    // Setting this to 'database'
+$config['sess_cookie_name']        = 'ci_session';
+$config['sess_expiration']         = 7200;
+$config['sess_save_path']          = 'ci_sessions'; // Table name goes here for DB driver
+$config['sess_match_ip']           = FALSE;
+$config['sess_time_to_update']     = 300;
 $config['sess_regenerate_destroy'] = FALSE;
-
 
 /*
 |--------------------------------------------------------------------------
