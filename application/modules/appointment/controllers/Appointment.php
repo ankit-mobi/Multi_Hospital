@@ -642,24 +642,38 @@ class Appointment extends MX_Controller {
         return $key;
     }
 
-    function getAppointmentByJason() {
+    public function getAppointmentByJason() {
 
-
-
+        // 1. Get the Raw Data
         if ($this->ion_auth->in_group(array('Doctor'))) {
             $doctor_ion_id = $this->ion_auth->get_user_id();
-            $doctor = $this->db->get_where('doctor', array('ion_user_id' => $doctor_ion_id))->row()->id;
-            $query = $this->appointment_model->getAppointmentByDoctor($doctor);
+            $doctor_row = $this->db->get_where('doctor', array('ion_user_id' => $doctor_ion_id))->row();
+            // Safety Check: If doctor ID not found, return empty array to prevent crash
+            if (empty($doctor_row)) { echo json_encode([]); return; }
+            $doctor_id = $doctor_row->id;
+            $query = $this->appointment_model->getAppointmentByDoctor($doctor_id);
+
         } elseif ($this->ion_auth->in_group(array('Patient'))) {
             $patient_ion_id = $this->ion_auth->get_user_id();
-            $patient = $this->db->get_where('patient', array('ion_user_id' => $patient_ion_id))->row()->id;
-            $query = $this->appointment_model->getAppointmentByPatient($patient);
+            $patient_row = $this->db->get_where('patient', array('ion_user_id' => $patient_ion_id))->row();
+            // Safety Check
+            if (empty($patient_row)) { echo json_encode([]); return; }
+            $patient_id = $patient_row->id;
+            $query = $this->appointment_model->getAppointmentByPatient($patient_id);
+
         } else {
             $query = $this->appointment_model->getAppointmentForCalendar();
         }
+
         $jsonevents = array();
 
         foreach ($query as $entry) {
+
+            // --- FIX 1: Handle Missing Time Slots ---
+            // If time_slot is empty, skip this entry so the calendar doesn't break
+            if (empty($entry->time_slot)) {
+                continue; 
+            }
 
             $doctor = $this->doctor_model->getDoctorById($entry->doctor);
             if (!empty($doctor)) {
@@ -667,25 +681,50 @@ class Appointment extends MX_Controller {
             } else {
                 $doctor = '';
             }
+
+            // --- FIX 2: Validate Time Format ---
+            // Expected format: "10:00 AM To 10:15 AM"
             $time_slot = $entry->time_slot;
             $time_slot_new = explode(' To ', $time_slot);
-            $start_time = explode(' ', $time_slot_new[0]);
-            $end_time = explode(' ', $time_slot_new[1]);
 
-            if ($start_time[1] == 'AM') {
-                $start_time_second = explode(':', $start_time[0]);
-                $day_start_time_second = $start_time_second[0] * 60 * 60 + $start_time_second[1] * 60;
-            } else {
-                $start_time_second = explode(':', $start_time[0]);
-                $day_start_time_second = 12 * 60 * 60 + $start_time_second[0] * 60 * 60 + $start_time_second[1] * 60;
+            // If explode didn't find " To ", skip
+            if (count($time_slot_new) < 2) {
+                continue; 
             }
 
-            if ($end_time[1] == 'AM') {
-                $end_time_second = explode(':', $end_time[0]);
-                $day_end_time_second = $end_time_second[0] * 60 * 60 + $end_time_second[1] * 60;
+            $start_time = explode(' ', $time_slot_new[0]); // ["10:00", "AM"]
+            $end_time = explode(' ', $time_slot_new[1]);   // ["10:15", "AM"]
+
+            // If explode didn't find a space (missing AM/PM), skip
+            if (count($start_time) < 2 || count($end_time) < 2) {
+                continue;
+            }
+
+            // --- FIX 3: Safe Calculation (Casting to int) ---
+            // Start Time Calculation
+            $start_time_second = explode(':', $start_time[0]);
+            if (count($start_time_second) < 2) continue; // Check for "10:00" format
+
+            if ($start_time[1] == 'AM') {
+                $day_start_time_second = ((int)$start_time_second[0] * 60 * 60) + ((int)$start_time_second[1] * 60);
             } else {
-                $end_time_second = explode(':', $end_time[0]);
-                $day_end_time_second = 12 * 60 * 60 + $end_time_second[0] * 60 * 60 + $end_time_second[1] * 60;
+                // Handle 12 PM case (12 PM is 12:00, not 24:00)
+                $hour = (int)$start_time_second[0];
+                if($hour != 12) { $hour = $hour + 12; }
+                $day_start_time_second = ($hour * 60 * 60) + ((int)$start_time_second[1] * 60);
+            }
+
+            // End Time Calculation
+            $end_time_second = explode(':', $end_time[0]);
+            if (count($end_time_second) < 2) continue;
+
+            if ($end_time[1] == 'AM') {
+                $day_end_time_second = ((int)$end_time_second[0] * 60 * 60) + ((int)$end_time_second[1] * 60);
+            } else {
+                 // Handle 12 PM case
+                 $hour = (int)$end_time_second[0];
+                 if($hour != 12) { $hour = $hour + 12; }
+                $day_end_time_second = ($hour * 60 * 60) + ((int)$end_time_second[1] * 60);
             }
 
             $patient_details = $this->patient_model->getPatientById($entry->patient);
@@ -699,8 +738,11 @@ class Appointment extends MX_Controller {
             }
 
             $info = '<br/>' . lang('status') . ': ' . $entry->status . '<br>' . lang('patient') . ': ' . $patient_name . '<br/>' . lang('phone') . ': ' . $patient_mobile . '<br/> Doctor: ' . $doctor . '<br/>' . lang('remarks') . ': ' . $entry->remarks;
+            
+            // --- FIX 4: Default Color ---
+            $color = '#000000'; // Default black if no status matches
+
             if ($entry->status == 'Pending Confirmation') {
-                //  $color = '#098098';
                 $color = 'yellowgreen';
             }
             if ($entry->status == 'Confirmed') {
@@ -723,8 +765,6 @@ class Appointment extends MX_Controller {
         }
 
         echo json_encode($jsonevents);
-
-        //  echo json_encode($data);
     }
 
     function getAppointmentByDoctorId() {
