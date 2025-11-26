@@ -176,8 +176,8 @@ if (!$this->ion_auth->in_group(array('superadmin'))) {
                                             $query = $this->db->get('bed')->result();
                                             $available_bed = 0;
                                             foreach ($query as $bed) {
-                                                $last_a_time = explode('-', $bed->last_a_time);
-                                                $last_d_time = explode('-', $bed->last_d_time);
+                                                $last_a_time = explode('-',(string)$bed->last_a_time);
+                                                $last_d_time = explode('-',(string) $bed->last_d_time);
                                                 if (!empty($last_d_time[1])) {
                                                     $last_d_h_am_pm = explode(' ', $last_d_time[1]);
                                                     $last_d_h = explode(':', $last_d_h_am_pm[1]);

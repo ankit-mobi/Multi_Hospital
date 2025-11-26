@@ -99,7 +99,13 @@
                                     }
                                 }
                             }
-                            $category_id_for_reports = array_unique($category_id_for_report);
+                 // Check if the variable exists and is actually an array
+if (isset($category_id_for_report) && is_array($category_id_for_report)) {
+    $category_id_for_reports = array_unique($category_id_for_report);
+} else {
+    // If it doesn't exist (no data found), set it to an empty array so the page loads
+    $category_id_for_reports = array();
+}
                             ?>
 
 
@@ -446,12 +452,18 @@
                                 </div>
                                 <div class="col-xs-8">
                                     <div class="degree">
-                                        <?php echo $settings->currency; ?>
-                                        <?php
-                                        $profit = $gross - $total_cost - $total_expense;
-                                        echo number_format($profit, 2, '.', ',');
-                                        ?>
-                                    </div>
+    <?php echo $settings->currency; ?>
+    <?php
+    // FIX: Use ( $variable ?? 0 ) to handle missing data safely
+    $g = $gross ?? 0; 
+    $tc = $total_cost ?? 0;
+    $te = $total_expense ?? 0;
+
+    $profit = $g - $tc - $te;
+    
+    echo number_format($profit, 2, '.', ',');
+    ?>
+</div>
                                 </div>
                             </div>
                         </div>

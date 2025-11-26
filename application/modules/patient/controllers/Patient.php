@@ -58,201 +58,181 @@ class Patient extends MX_Controller {
         $this->load->view('home/footer'); // just the header file
     }
 
-    public function addNew() {
+   public function addNew() {
 
-        if ($this->ion_auth->in_group(array('Patient'))) {
-            redirect('home/permission');
-        }
+    if ($this->ion_auth->in_group(array('Patient'))) {
+        redirect('home/permission');
+    }
 
-        $id = $this->input->post('id');
+    $id = $this->input->post('id');
 
-
-        if (empty($id)) {
-            $limit = $this->patient_model->getLimit();
-            if ($limit <= 0) {
-                $this->session->set_flashdata('feedback', lang('patient_limit_exceed'));
-                redirect('patient');
-            }
-        }
-
-
-
-        $redirect = $this->input->get('redirect');
-        $name = $this->input->post('name');
-        $password = $this->input->post('password');
-        $sms = $this->input->post('sms');
-        $doctor = $this->input->post('doctor');
-        $address = $this->input->post('address');
-        $phone = $this->input->post('phone');
-        $sex = $this->input->post('sex');
-        $birthdate = $this->input->post('birthdate');
-        $bloodgroup = $this->input->post('bloodgroup');
-        $patient_id = $this->input->post('p_id');
-        if (empty($patient_id)) {
-            $patient_id = rand(10000, 1000000);
-        }
-        if ((empty($id))) {
-            $add_date = date('m/d/y');
-            $registration_time = time();
-        } else {
-            $add_date = $this->patient_model->getPatientById($id)->add_date;
-            $registration_time = $this->patient_model->getPatientById($id)->registration_time;
-        }
-
-
-        $email = $this->input->post('email');
-        if (empty($email)) {
-            $email = $name . '@' . $phone.'.com';
-        }
-
-
-
-        $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-
-        // Validating Name Field
-        $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[2]|max_length[100]');
-        // Validating Password Field
-        if (empty($id)) {
-            $this->form_validation->set_rules('password', 'Password', 'trim|min_length[3]|max_length[100]');
-        }
-        // Validating Email Field
-        $this->form_validation->set_rules('email', 'Email', 'trim|min_length[2]|max_length[100]');
-        // Validating Doctor Field
-        //   $this->form_validation->set_rules('doctor', 'Doctor', 'trim|min_length[1]|max_length[100]');
-        // Validating Address Field   
-        $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[2]|max_length[500]');
-        // Validating Phone Field           
-        $this->form_validation->set_rules('phone', 'Phone', 'trim|required|min_length[2]|max_length[50]');
-        // Validating Email Field
-        $this->form_validation->set_rules('sex', 'Sex', 'trim|min_length[2]|max_length[100]');
-        // Validating Address Field   
-        $this->form_validation->set_rules('birthdate', 'Birth Date', 'trim|min_length[2]|max_length[500]');
-        // Validating Phone Field           
-        $this->form_validation->set_rules('bloodgroup', 'Blood Group', 'trim|min_length[1]|max_length[10]');
-
-
-        if ($this->form_validation->run() == FALSE) {
-            if (!empty($id)) {
-                $this->session->set_flashdata('feedback', 'Validation Error !');
-                redirect("patient/editPatient?id=$id");
-            } else {
-                $data = array();
-                $data['setval'] = 'setval';
-                $data['doctors'] = $this->doctor_model->getDoctor();
-                $data['groups'] = $this->donor_model->getBloodBank();
-                $this->load->view('home/dashboard'); // just the header file
-                $this->load->view('add_new', $data);
-                $this->load->view('home/footer'); // just the header file
-            }
-        } else {
-            $file_name = $_FILES['img_url']['name'];
-            $file_name_pieces = explode('_', $file_name);
-            $new_file_name = '';
-            $count = 1;
-            foreach ($file_name_pieces as $piece) {
-                if ($count !== 1) {
-                    $piece = ucfirst($piece);
-                }
-
-                $new_file_name .= $piece;
-                $count++;
-            }
-            $config = array(
-                'file_name' => $new_file_name,
-                'upload_path' => "./uploads/",
-                'allowed_types' => "gif|jpg|png|jpeg|pdf",
-                'overwrite' => False,
-                'max_size' => "20480000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
-                'max_height' => "1768",
-                'max_width' => "2024"
-            );
-
-            $this->load->library('Upload', $config);
-            $this->upload->initialize($config);
-
-            if ($this->upload->do_upload('img_url')) {
-                $path = $this->upload->data();
-                $img_url = "uploads/" . $path['file_name'];
-                $data = array();
-                $data = array(
-                    'patient_id' => $patient_id,
-                    'img_url' => $img_url,
-                    'name' => $name,
-                    'email' => $email,
-                    'address' => $address,
-                    'doctor' => $doctor,
-                    'phone' => $phone,
-                    'sex' => $sex,
-                    'birthdate' => $birthdate,
-                    'bloodgroup' => $bloodgroup,
-                    'add_date' => $add_date,
-                    'registration_time' => $registration_time
-                );
-            } else {
-                //$error = array('error' => $this->upload->display_errors());
-                $data = array();
-                $data = array(
-                    'patient_id' => $patient_id,
-                    'name' => $name,
-                    'email' => $email,
-                    'doctor' => $doctor,
-                    'address' => $address,
-                    'phone' => $phone,
-                    'sex' => $sex,
-                    'birthdate' => $birthdate,
-                    'bloodgroup' => $bloodgroup,
-                    'add_date' => $add_date,
-                    'registration_time' => $registration_time
-                );
-            }
-
-            $username = $this->input->post('name');
-
-            if (empty($id)) {     // Adding New Patient
-                if ($this->ion_auth->email_check($email)) {
-                    $this->session->set_flashdata('feedback', 'This Email Address Is Already Registered');
-                    redirect('patient/addNewView');
-                } else {
-                    $dfg = 5;
-                    $this->ion_auth->register($username, $password, $email, $dfg);
-                    $ion_user_id = $this->db->get_where('users', array('email' => $email))->row()->id;
-                    $this->patient_model->insertPatient($data);
-                    $patient_user_id = $this->db->get_where('patient', array('email' => $email))->row()->id;
-                    $id_info = array('ion_user_id' => $ion_user_id);
-                    $this->patient_model->updatePatient($patient_user_id, $id_info);
-                    $this->hospital_model->addHospitalIdToIonUser($ion_user_id, $this->hospital_id);
-
-                    if (!empty($sms)) {
-                        $this->sms->sendSmsDuringPatientRegistration($patient_user_id);
-                    }
-
-
-
-
-                    $this->session->set_flashdata('feedback', 'Added');
-                }
-                //    }
-            } else { // Updating Patient
-                $ion_user_id = $this->db->get_where('patient', array('id' => $id))->row()->ion_user_id;
-                if (empty($password)) {
-                    $password = $this->db->get_where('users', array('id' => $ion_user_id))->row()->password;
-                } else {
-                    $password = $this->ion_auth_model->hash_password($password);
-                }
-                $this->patient_model->updateIonUser($username, $email, $password, $ion_user_id);
-                $this->patient_model->updatePatient($id, $data);
-                $this->session->set_flashdata('feedback', 'Updated');
-            }
-            // Loading View
-            if (!empty($redirect)) {
-                redirect('finance/addPaymentView');
-            } else {
-                redirect('patient');
-            }
+    // Limit Check
+    if (empty($id)) {
+        $limit = $this->patient_model->getLimit();
+        if ($limit <= 0) {
+            $this->session->set_flashdata('feedback', lang('patient_limit_exceed'));
+            redirect('patient');
         }
     }
 
+    $redirect = $this->input->get('redirect');
+    $name = $this->input->post('name');
+    $password = $this->input->post('password');
+    $sms = $this->input->post('sms');
+    $doctor = $this->input->post('doctor');
+    $address = $this->input->post('address');
+    $phone = $this->input->post('phone');
+    $sex = $this->input->post('sex');
+    $birthdate = $this->input->post('birthdate');
+    $bloodgroup = $this->input->post('bloodgroup');
+    $patient_id = $this->input->post('p_id');
+
+    if (empty($patient_id)) {
+        $patient_id = rand(10000, 1000000);
+    }
+
+    if ((empty($id))) {
+        $add_date = date('m/d/y');
+        $registration_time = time();
+    } else {
+        $existing_patient = $this->patient_model->getPatientById($id);
+        $add_date = $existing_patient->add_date;
+        $registration_time = $existing_patient->registration_time;
+    }
+
+    $email = $this->input->post('email');
+    if (empty($email)) {
+        $email = $name . '@' . $phone . '.com';
+    }
+
+    $this->load->library('form_validation');
+    $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+
+    // Validation Rules
+    $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[2]|max_length[100]');
+    if (empty($id)) {
+        $this->form_validation->set_rules('password', 'Password', 'trim|min_length[3]|max_length[100]');
+    }
+    $this->form_validation->set_rules('email', 'Email', 'trim|min_length[2]|max_length[100]');
+    $this->form_validation->set_rules('address', 'Address', 'trim|required|min_length[2]|max_length[500]');
+    $this->form_validation->set_rules('phone', 'Phone', 'trim|required|min_length[2]|max_length[50]');
+    $this->form_validation->set_rules('sex', 'Sex', 'trim|min_length[2]|max_length[100]');
+    $this->form_validation->set_rules('birthdate', 'Birth Date', 'trim|min_length[2]|max_length[500]');
+    $this->form_validation->set_rules('bloodgroup', 'Blood Group', 'trim|min_length[1]|max_length[10]');
+
+    if ($this->form_validation->run() == FALSE) {
+        if (!empty($id)) {
+            $this->session->set_flashdata('feedback', 'Validation Error !');
+            redirect("patient/editPatient?id=$id");
+        } else {
+            $data = array();
+            $data['setval'] = 'setval';
+            $data['doctors'] = $this->doctor_model->getDoctor();
+            $data['groups'] = $this->donor_model->getBloodBank();
+            $this->load->view('home/dashboard');
+            $this->load->view('add_new', $data);
+            $this->load->view('home/footer');
+        }
+    } else {
+        
+        // ---------------------------------------------------------
+        // START: NEW UPLOAD LOGIC
+        // ---------------------------------------------------------
+        $file_name = $_FILES['img_url']['name'];
+        $img_url = null;
+
+        // 1. If user selected a new file
+        if (!empty($file_name)) {
+            $config = array();
+            $config['upload_path'] = "./uploads/";
+            $config['allowed_types'] = "gif|jpg|png|jpeg|pdf|webp";
+            $config['max_size'] = "20480"; // 20 MB
+            $config['overwrite'] = FALSE;
+            // Use time() to prevent spaces and duplicates issues
+            $config['file_name'] = time() . '_' . str_replace(' ', '_', $file_name);
+
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('img_url')) {
+                // Success: Get the path
+                $upload_data = $this->upload->data();
+                $img_url = "uploads/" . $upload_data['file_name'];
+            } else {
+                // Error: You might want to log this
+                // echo $this->upload->display_errors(); 
+            }
+        } 
+        
+        // 2. If no new file uploaded, check for existing image (Edit Mode)
+        if (empty($img_url) && !empty($id)) {
+            $previous_data = $this->patient_model->getPatientById($id);
+            $img_url = $previous_data->img_url;
+        }
+        // ---------------------------------------------------------
+        // END: NEW UPLOAD LOGIC
+        // ---------------------------------------------------------
+
+        $username = $this->input->post('name');
+
+        // Prepare Data Array ONCE (cleaner code)
+        $data = array(
+            'patient_id' => $patient_id,
+            'img_url' => $img_url, // This now has either the New Image or Old Image
+            'name' => $name,
+            'email' => $email,
+            'address' => $address,
+            'doctor' => $doctor,
+            'phone' => $phone,
+            'sex' => $sex,
+            'birthdate' => $birthdate,
+            'bloodgroup' => $bloodgroup,
+            'add_date' => $add_date,
+            'registration_time' => $registration_time
+        );
+
+        if (empty($id)) {     // Adding New Patient
+            if ($this->ion_auth->email_check($email)) {
+                $this->session->set_flashdata('feedback', 'This Email Address Is Already Registered');
+                redirect('patient/addNewView');
+            } else {
+                $dfg = 5;
+                $this->ion_auth->register($username, $password, $email, $dfg);
+                $ion_user_id = $this->db->get_where('users', array('email' => $email))->row()->id;
+                
+                $this->patient_model->insertPatient($data);
+                
+                $patient_user_id = $this->db->get_where('patient', array('email' => $email))->row()->id;
+                $id_info = array('ion_user_id' => $ion_user_id);
+                $this->patient_model->updatePatient($patient_user_id, $id_info);
+                $this->hospital_model->addHospitalIdToIonUser($ion_user_id, $this->hospital_id);
+
+                if (!empty($sms)) {
+                    $this->sms->sendSmsDuringPatientRegistration($patient_user_id);
+                }
+
+                $this->session->set_flashdata('feedback', 'Added');
+            }
+        } else { // Updating Patient
+            $ion_user_id = $this->db->get_where('patient', array('id' => $id))->row()->ion_user_id;
+            if (empty($password)) {
+                $password = $this->db->get_where('users', array('id' => $ion_user_id))->row()->password;
+            } else {
+                $password = $this->ion_auth_model->hash_password($password);
+            }
+            $this->patient_model->updateIonUser($username, $email, $password, $ion_user_id);
+            $this->patient_model->updatePatient($id, $data);
+            $this->session->set_flashdata('feedback', 'Updated');
+        }
+        
+        // Loading View
+        if (!empty($redirect)) {
+            redirect('finance/addPaymentView');
+        } else {
+            redirect('patient');
+        }
+    }
+}
     function editPatient() {
         $data = array();
         $id = $this->input->get('id');
@@ -434,8 +414,8 @@ class Patient extends MX_Controller {
             $patient = $this->patient_model->getPatientByIonUserId($patient_ion_id)->id;
         }
 
-        $date_from = strtotime($this->input->post('date_from'));
-        $date_to = strtotime($this->input->post('date_to'));
+        $date_from = strtotime((string)$this->input->post('date_from'));
+        $date_to = strtotime((string)$this->input->post('date_to'));
         if (!empty($date_to)) {
             $date_to = $date_to + 86399;
         }

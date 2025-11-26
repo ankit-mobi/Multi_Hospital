@@ -20,7 +20,18 @@
                 <section class="">
                     <div class="user-heading round">
                         <a href="#">
-                            <img src="<?php echo $patient->img_url; ?>" alt="">
+                           <?php 
+    // 1. Check if the image string is not empty
+    if (!empty($patient->img_url)) {
+        // Force it to be a string just in case, and use base_url
+        $image_src = base_url((string)$patient->img_url);
+    } else {
+        // 2. Fallback: Use a default placeholder image if none exists
+        // (Make sure you have a default.png, or use a placeholder link like this)
+        $image_src = base_url('common/assets/images/default-user.png'); 
+        // OR just leave it empty if you prefer
+    }
+?>
                         </a>
                         <h1> <?php echo $patient->name; ?> </h1>
                         <p> <?php echo $patient->email; ?> </p>

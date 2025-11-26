@@ -1244,8 +1244,8 @@ class Finance extends MX_Controller {
     }
 
     function doctorsCommission() {
-        $date_from = strtotime($this->input->post('date_from'));
-        $date_to = strtotime($this->input->post('date_to'));
+        $date_from = strtotime((string)$this->input->post('date_from'));
+        $date_to = strtotime((string)$this->input->post('date_to'));
         if (!empty($date_to)) {
             $date_to = $date_to + 86399;
         }
@@ -1285,8 +1285,8 @@ class Finance extends MX_Controller {
     }
 
     function financialReport() {
-        $date_from = strtotime($this->input->post('date_from'));
-        $date_to = strtotime($this->input->post('date_to'));
+        $date_from = strtotime((string)$this->input->post('date_from'));
+        $date_to = strtotime((string)$this->input->post('date_to'));
         if (!empty($date_to)) {
             $date_to = $date_to + 86399;
         }

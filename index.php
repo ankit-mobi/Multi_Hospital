@@ -66,7 +66,8 @@
 switch (ENVIRONMENT)
 {
 	case 'development':
-		error_reporting(-1);
+	// Fix 4: Hide Deprecated warnings so sessions start correctly on PHP 8.1+
+        error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
 		ini_set('display_errors', 1);
 	break;
 

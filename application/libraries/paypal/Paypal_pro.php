@@ -28,6 +28,7 @@
  * @filesource
 */
 
+#[AllowDynamicProperties]
 class PayPal_Pro
 {
 
