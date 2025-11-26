@@ -14,16 +14,40 @@
 | and path to your installation. However, you should always configure this
 | explicitly and never rely on auto-guessing, especially in production
 | environments.
-|
-*/
-if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 
-    $ht = "https://";
-} else {
-	$ht = "http://";
+*/
+// if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+
+//     $ht = "https://";
+// } else {
+// 	$ht = "http://";
+// }
+// $config['base_url'] = $ht.$_SERVER['HTTP_HOST'];
+// $config['base_url'] .= preg_replace('@/+$@','',dirname($_SERVER['SCRIPT_NAME'])).'/'; 
+
+/*
+|--------------------------------------------------------------------------
+| Base Site URL
+|--------------------------------------------------------------------------
+| CodeIgniter 3 doesn't use .env by default. 
+| We switch settings based on the 'ENVIRONMENT' constant defined in index.php
+*/
+
+if (ENVIRONMENT === 'production')
+{
+    $config['base_url'] = 'https://www.apollo-hospital.com/'; 
 }
-$config['base_url'] = $ht.$_SERVER['HTTP_HOST'];
-$config['base_url'] .= preg_replace('@/+$@','',dirname($_SERVER['SCRIPT_NAME'])).'/'; 
+elseif (ENVIRONMENT === 'testing')
+{
+    $config['base_url'] = 'https://test.hospital-staging.com/';
+}
+else
+{
+    // -----------------------------------------------------------
+    // LOCALHOST / DEVELOPMENT
+    // -----------------------------------------------------------
+    $config['base_url'] = 'http://localhost/Multi-Hospital';
+}
 
 
 /*
