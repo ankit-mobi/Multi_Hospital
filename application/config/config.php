@@ -35,7 +35,7 @@
 
 if (ENVIRONMENT === 'production')
 {
-    $config['base_url'] = 'https://www.apollo-hospital.com/'; 
+    $config['base_url'] = 'https://www.hospital.com/'; 
 }
 elseif (ENVIRONMENT === 'testing')
 {
