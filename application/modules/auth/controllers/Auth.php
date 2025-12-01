@@ -48,59 +48,58 @@ class Auth extends MX_Controller {
 
 	//log the user in
 	function login()
-	{
+    {
+        $data['title'] = "Login";
+
+        // 1. Check if already logged in
+        if ($this->ion_auth->logged_in()) {
+            redirect('home');
+        }
+
+        // 2. Validation Rules
+        $this->form_validation->set_rules('identity', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+        
+        // Remove default <p> tags for cleaner alerts
+        $this->form_validation->set_error_delimiters('', '<br>');
+
+        if ($this->form_validation->run() == true) {
             
-            if ($this->ion_auth->logged_in())
-		{
-			//redirect them to the login page
-			redirect('home');
-		}
-		$data['title'] = "Login";
+            $remember = (bool) $this->input->post('remember');
+            $identity = $this->input->post('identity', TRUE);
+            $password = $this->input->post('password', TRUE);
 
-		//validate form input
-		$this->form_validation->set_rules('identity', 'Identity', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required');
+            // --- NEW: Custom Check for Email Existence ---
+            // We query the 'users' table directly to see if this email exists
+            $email_check = $this->db->get_where('users', array('email' => $identity));
+            
+            if ($email_check->num_rows() == 0) {
+                // Scenario 1: Email DOES NOT exist
+                $this->session->set_flashdata('message', 'This email is not registered');
+                redirect('auth/login', 'refresh');
+            }
+            
+            // --- Attempt Login (Since email exists, this checks password) ---
+            if ($this->ion_auth->login($identity, $password, $remember)) {
+                // Scenario 2: Success
+                $this->session->set_flashdata('message', $this->ion_auth->messages());
+                redirect('/', 'refresh');
+            } else {
+                // Scenario 3: Email exists, but Login failed (Wrong Password or Inactive)
+                $this->session->set_flashdata('message', 'Incorrect Password. Please try again.');
+                redirect('auth/login', 'refresh');
+            }
+        } 
+        else {
+            // Validation Failed or First Load
+            $message = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+            $data['message'] = $message;
 
-		if ($this->form_validation->run() == true)
-		{
-			//check to see if the user is logging in
-			//check for "remember me"
-			$remember = (bool) $this->input->post('remember');
-
-			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
-			{
-				//if the login is successful
-				//redirect them back to the home page
-				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect('/', 'refresh');
-			}
-			else
-			{
-				//if the login was un-successful
-				//redirect them back to the login page
-				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect('auth/login', 'refresh'); //use redirects instead of loading views for compatibility with MY_Controller libraries
-			}
-		}
-		else
-		{
-			//the user is not logging in so display the login page
-			//set the flash data error message if there is one
-			$data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-
-			$data['identity'] = array('name' => 'identity',
-				'id' => 'identity',
-				'type' => 'text',
-				'value' => $this->form_validation->set_value('identity'),
-			);
-			$data['password'] = array('name' => 'password',
-				'id' => 'password',
-				'type' => 'password',
-			);
-
-			$this->_render_page('auth/login', $data);
-		}
-	}
+            $data['identity_value'] = $this->form_validation->set_value('identity');
+            
+            $this->_render_page('auth/login', $data);
+        }
+    }
 
 	//log the user out
 	function logout()
@@ -196,65 +195,57 @@ class Auth extends MX_Controller {
 		   $this->form_validation->set_rules('email', $this->lang->line('forgot_password_validation_email_label'), 'required|valid_email');
 		}
 
+		 $this->form_validation->set_error_delimiters('','<br>');
 
 		if ($this->form_validation->run() == false)
 		{
 			//setup the input
-			$data['email'] = array('name' => 'email',
-				'id' => 'email',
-			);
-
-			if ( $this->config->item('identity', 'ion_auth') == 'username' ){
-				$data['identity_label'] = $this->lang->line('forgot_password_username_identity_label');
-			}
-			else
-			{
-				$data['identity_label'] = $this->lang->line('forgot_password_email_identity_label');
+			$message = (validation_errors() ? validation_errors() : $this->session->flashdata('message'));
+			 
+			if(!empty($message) || $this->input->post('submit')){
+				$this->session->set_flashdata('message', $message);
 			}
 
-			//set any errors and display the form
-			$data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-			$this->_render_page('auth/forgot_password', $data);
+			redirect("auth/login", 'refresh');
 		}
-		else
-		{
+		else{
+			 $identity_mode = $this->config->item('identity', 'ion_auth');
+            $user_input = strtolower($this->input->post('email'));
+
 			// get identity from username or email
-			if ( $this->config->item('identity', 'ion_auth') == 'username' ){
-				$identity = $this->ion_auth->where('username', strtolower($this->input->post('email')))->users()->row();
-			}
-			else
-			{
-				$identity = $this->ion_auth->where('email', strtolower($this->input->post('email')))->users()->row();
-			}
+			if ($identity_mode == 'username') {
+                $identity = $this->ion_auth->where('username', $user_input)->users()->row();
+            } else {
+                $identity = $this->ion_auth->where('email', $user_input)->users()->row();
+            }
 	            	if(empty($identity)) {
 
-	            		if($this->config->item('identity', 'ion_auth') == 'username')
-		            	{
-                                   $this->ion_auth->set_message('forgot_password_username_not_found');
-		            	}
-		            	else
-		            	{
-		            	   $this->ion_auth->set_message('forgot_password_email_not_found');
-		            	}
+	            		 if ($identity_mode == 'username') {
+                    $this->ion_auth->set_message('forgot_password_username_not_found');
+                } else {
+                    $this->ion_auth->set_message('forgot_password_email_not_found');
+                }
 
 		                $this->session->set_flashdata('message', $this->ion_auth->messages());
-                		redirect("auth/forgot_password", 'refresh');
+                
+                // --- CHANGE IS HERE: Redirect to Login, not forgot_password ---
+                redirect("auth/login", 'refresh');
             		}
 
 			//run the forgotten password method to email an activation code to the user
-			$forgotten = $this->ion_auth->forgotten_password($identity->{$this->config->item('identity', 'ion_auth')});
+	            $forgotten = $this->ion_auth->forgotten_password($identity->{$this->config->item('identity', 'ion_auth')});
 
-			if ($forgotten)
-			{
-				//if there were no errors
-				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect("auth/login", 'refresh'); //we should display a confirmation page here instead of the login page
-			}
-			else
-			{
-				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect("auth/forgot_password", 'refresh');
-			}
+
+			 if ($forgotten) {
+                // Success
+                $this->session->set_flashdata('message', $this->ion_auth->messages());
+                redirect("auth/login", 'refresh');
+            } else {
+                // Fail
+                $this->session->set_flashdata('message', $this->ion_auth->errors());
+                // --- CHANGE IS HERE: Redirect to Login ---
+                redirect("auth/login", 'refresh');
+            }
 		}
 	}
 

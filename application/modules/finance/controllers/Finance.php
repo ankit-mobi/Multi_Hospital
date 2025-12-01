@@ -1043,8 +1043,8 @@ class Finance extends MX_Controller {
             redirect('home/permission');
         }
 
-        $date_from = strtotime($this->input->post('date_from'));
-        $date_to = strtotime($this->input->post('date_to'));
+        $date_from = strtotime((string)$this->input->post('date_from'));
+        $date_to = strtotime((string)$this->input->post('date_to'));
         if (!empty($date_to)) {
             $date_to = $date_to + 86399;
         }

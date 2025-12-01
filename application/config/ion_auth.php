@@ -120,12 +120,13 @@ $config['identity_cookie_name'] = 'identity';
  */
 $config['use_ci_email'] = TRUE; // Send Email using the builtin CI email class, if false it will return the code and the identity
 $config['email_config'] = array(
-	'mailtype' => 'html',
-        'protocol' => 'smtp',
-        'smtp_host' => 'localhost',
-        'smtp_port' => '25',
-        'crlf' => "\r\n",
-        'newline' => "\r\n",
+    'protocol'  => 'smtp',
+    'smtp_host' => 'ssl://smtp.gmail.com',
+    'smtp_port' => 465,
+    'smtp_user' => 'theankitshow00@gmail.com',
+    'smtp_pass' => 'yjqnygqhapqnfwiq',
+    'mailtype'  => 'html',
+    'charset'   => 'utf-8'
 );
 
 

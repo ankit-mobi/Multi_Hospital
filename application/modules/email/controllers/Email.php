@@ -3,10 +3,17 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Email extends MX_Controller {
+class Email extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+
+        //load CI email config
+           $this->load->config('email');  
+    $config = $this->config->item('email');
+    $this->load->library('email', $config);
+    $this->email->initialize($config);
+
         $this->load->model('email_model');
         $this->load->model('patient/patient_model');
         $this->load->model('donor/donor_model');

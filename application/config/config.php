@@ -35,11 +35,11 @@
 
 if (ENVIRONMENT === 'production')
 {
-    $config['base_url'] = 'https://www.hospital.com/'; 
+    $config['base_url'] = 'https://dev.mobicloudtechnologies.com/smartwork/hospital/'; 
 }
 elseif (ENVIRONMENT === 'testing')
 {
-    $config['base_url'] = 'https://test.hospital-staging.com/';
+    $config['base_url'] = 'https://dev.mobicloudtechnologies.com/smartwork/hospital/';
 }
 else
 {
